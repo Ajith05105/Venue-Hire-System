@@ -28,9 +28,9 @@
     {
       "label": "run codestyle",
       "type": "shell",
-      "command": "mvnw.cmd clean compile exec:java@style",
+      "command": "./mvnw  clean compile exec:java@style",
       "windows": {
-        "command": ".\\mvnw.cmd clean compile test"
+        "command": ".\\mvnw.cmd clean compile exec:java@style"
       },
       "group": {
         "kind": "test",
