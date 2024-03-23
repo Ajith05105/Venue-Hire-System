@@ -9,6 +9,7 @@ public class VenueHireSystem {
 
   public void printVenues() {
     // TODO implement this method
+    MessageCli.NO_VENUES.printMessage();
   }
 
   public void createVenue(
