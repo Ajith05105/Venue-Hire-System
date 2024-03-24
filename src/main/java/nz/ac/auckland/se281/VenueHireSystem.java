@@ -7,14 +7,38 @@ import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
   private ArrayList<String> venuData;
+  int bookings;
+  private  String[] ONES = {
+    "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
+};
+
+  
 
   public VenueHireSystem() {
     venuData =  new ArrayList<>();
   }
 
+  public String convertToText(int number) {
+    if (number >= 1 && number <= 9) {
+        return ONES[number];
+   
+}  else {
+  return "Unsupported number";
+}
+  }
+
   public void printVenues() {
-    // TODO implement this method
-    MessageCli.NO_VENUES.printMessage();
+    this.bookings = bookings;
+    bookings = 0;
+   
+    for(int i = 0; i<venuData.size();i++){
+       bookings ++;
+    }
+    if(bookings>0){
+    MessageCli.NO_VENUES.printMessage();}
+    else{
+    MessageCli.NUMBER_VENUES.printMessage();
+    }
   }
 
  
