@@ -8,17 +8,16 @@ import nz.ac.auckland.se281.Types.FloralType;
 public class VenueHireSystem {
   private ArrayList<String> venuData;
   int bookings;
-  private  String[] ONES = {
-    "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
-};
+    
 
-  
 
   public VenueHireSystem() {
     venuData =  new ArrayList<>();
   }
 
   public String convertToText(int number) {
+    String[] ONES = {
+      "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
     if (number >= 1 && number <= 9) {
         return ONES[number];
    
@@ -34,8 +33,11 @@ public class VenueHireSystem {
     for(int i = 0; i<venuData.size();i++){
        bookings ++;
     }
-    if(bookings>0){
-    MessageCli.NO_VENUES.printMessage();}
+    if(bookings>0 && bookings < 10){
+    MessageCli.NO_VENUES.printMessage("is",convertToText(bookings));}
+    else if (bookings >= 10){
+      MessageCli.NO_VENUES.printMessage("is", String.valueOf(bookings));
+    }
     else{
     MessageCli.NUMBER_VENUES.printMessage();
     }
