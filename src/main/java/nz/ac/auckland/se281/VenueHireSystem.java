@@ -18,8 +18,7 @@ public class VenueHireSystem {
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
         this.venueCode = venueCode;
         this.venuName = venueName ;
-    MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName,venueCode);
-
+        MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName,venueCode);
     
   }
 
