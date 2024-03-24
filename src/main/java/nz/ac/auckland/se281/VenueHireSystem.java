@@ -4,6 +4,8 @@ import nz.ac.auckland.se281.Types.CateringType;
 import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
+  private String venueCode;
+  private String venuName;
 
   public VenueHireSystem() {}
 
@@ -14,7 +16,11 @@ public class VenueHireSystem {
 
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
-    // TODO implement this method
+        this.venueCode = venueCode;
+        this.venuName = venueName ;
+    MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName,venueCode);
+
+    
   }
 
   public void setSystemDate(String dateInput) {
