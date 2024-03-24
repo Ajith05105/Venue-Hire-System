@@ -17,10 +17,13 @@ public class VenueHireSystem {
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
       if(venueName.isEmpty()){
         MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
-    
-  }
+    }
       else if(Integer.parseInt(capacityInput)<0){
         MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity"," positive");
+      }
+      else if(hireFeeInput instanceof String){
+        MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
+
       }
       else{
         MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName,venueCode);
