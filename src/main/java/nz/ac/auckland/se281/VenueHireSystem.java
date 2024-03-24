@@ -34,12 +34,12 @@ public class VenueHireSystem {
        bookings ++;
     }
     if(bookings>0 && bookings < 10){
-    MessageCli.NO_VENUES.printMessage("is",convertToText(bookings));}
+    MessageCli.NUMBER_VENUES.printMessage("is",convertToText(bookings), "");}
     else if (bookings >= 10){
-      MessageCli.NO_VENUES.printMessage("is", String.valueOf(bookings));
+      MessageCli.NUMBER_VENUES.printMessage("is", String.valueOf(bookings), "");
     }
     else{
-    MessageCli.NUMBER_VENUES.printMessage();
+    MessageCli.NO_VENUES.printMessage();
     }
   }
 
