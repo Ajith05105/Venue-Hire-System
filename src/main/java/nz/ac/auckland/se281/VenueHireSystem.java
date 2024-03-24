@@ -1,12 +1,16 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
+
 import nz.ac.auckland.se281.Types.CateringType;
 import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
-  
+  private ArrayList<String> venuData;
 
-  public VenueHireSystem() {}
+  public VenueHireSystem() {
+    venuData =  new ArrayList<>();
+  }
 
   public void printVenues() {
     // TODO implement this method
@@ -30,6 +34,9 @@ public class VenueHireSystem {
               MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "positive");
           } else {
               MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+              String data = String.format("%s %s %s %s",venueName,venueCode,capacityInput,hireFeeInput);
+              venuData.add(data);
+
           }
       } catch (NumberFormatException e) {
           MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
