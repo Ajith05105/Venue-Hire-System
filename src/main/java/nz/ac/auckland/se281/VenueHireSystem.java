@@ -15,10 +15,17 @@ public class VenueHireSystem {
 
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
-      
-        MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName,venueCode);
+      if(venueName.isEmpty()){
+        MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
     
   }
+      if(Integer.parseInt(capacityInput)<0){
+        MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity","positive");
+      }
+      else{
+        MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName,venueCode);
+      }
+    }
 
   public void setSystemDate(String dateInput) {
     // TODO implement this method
