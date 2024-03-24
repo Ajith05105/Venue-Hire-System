@@ -13,22 +13,31 @@ public class VenueHireSystem {
     MessageCli.NO_VENUES.printMessage();
   }
 
+ 
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
-      if(venueName.isEmpty()){
-        MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
-    }
-      else if(Integer.parseInt(capacityInput)<0){
-        MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity"," positive");
+      
+  if (venueName.isEmpty()) {
+      MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
+  } else {
+      try {
+          int capacity = Integer.parseInt(capacityInput);
+          int hireFee = Integer.parseInt(hireFeeInput);
+          
+          if (capacity < 0) {
+              MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
+          } else if (hireFee < 0) {
+              MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "positive");
+          } else {
+              MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+          }
+      } catch (NumberFormatException e) {
+          MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
       }
-      else if(hireFeeInput instanceof String){
-        MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
+  }
+}
 
-      }
-      else{
-        MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName,venueCode);
-      }
-    }
+    
 
   public void setSystemDate(String dateInput) {
     // TODO implement this method
