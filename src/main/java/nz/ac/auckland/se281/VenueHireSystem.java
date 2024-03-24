@@ -36,7 +36,7 @@ public class VenueHireSystem {
     if(bookings>0 && bookings < 10){
     MessageCli.NUMBER_VENUES.printMessage("is",convertToText(bookings), "");}
     else if (bookings >= 10){
-      MessageCli.NUMBER_VENUES.printMessage("is", String.valueOf(bookings), "");
+      MessageCli.NUMBER_VENUES.printMessage("is", Integer.toString(bookings), "");
     }
     else{
     MessageCli.NO_VENUES.printMessage();
