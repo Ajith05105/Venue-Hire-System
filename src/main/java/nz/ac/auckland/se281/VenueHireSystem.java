@@ -6,13 +6,13 @@ import nz.ac.auckland.se281.Types.CateringType;
 import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
-  private ArrayList<String> venuData;
+  private ArrayList<ArrayList<String>> venueData;
   int bookings;
     
 
 
   public VenueHireSystem() {
-    venuData =  new ArrayList<>();
+    venueData = new ArrayList<>();
   }
 
   public String convertToText(int number) {
@@ -30,13 +30,54 @@ public class VenueHireSystem {
     this.bookings = bookings;
     bookings = 0;
    
-    for(int i = 0; i<venuData.size();i++){
+    for(int i = 0; i<venueData.size();i++){
        bookings ++;
     }
-    if(bookings>0 && bookings < 10){
-    MessageCli.NUMBER_VENUES.printMessage("is",convertToText(bookings), "");}
+    if(bookings == 1){
+      MessageCli.NUMBER_VENUES.printMessage("is",convertToText(bookings), "");
+      for (ArrayList<String> venue : venueData) {
+        String venueName = venue.get(0);
+        String venueCode = venue.get(1);
+        String capacity = venue.get(2);
+        String hireFee = venue.get(3);
+
+        String venueInfo = String.format(
+            "%s (%s) - %s people - $%s base hire fee",
+            venueName, venueCode, capacity, hireFee
+        );
+        System.out.println(venueInfo);
+    }
+    }
+    else if(bookings>1 && bookings < 10){
+      MessageCli.NUMBER_VENUES.printMessage("are",convertToText(bookings), "s");
+      for (ArrayList<String> venue : venueData) {
+        String venueName = venue.get(0);
+        String venueCode = venue.get(1);
+        String capacity = venue.get(2);
+        String hireFee = venue.get(3);
+
+        String venueInfo = String.format(
+            "%s (%s) - %s people - $%s base hire fee",
+            venueName, venueCode, capacity, hireFee
+        );
+        System.out.println(venueInfo);
+    }
+    }
     else if (bookings >= 10){
-      MessageCli.NUMBER_VENUES.printMessage("is", Integer.toString(bookings), "");
+      MessageCli.NUMBER_VENUES.printMessage("are", String.valueOf(bookings), "s");
+      for (ArrayList<String> venue : venueData) {
+        String venueName = venue.get(0);
+        String venueCode = venue.get(1);
+        String capacity = venue.get(2);
+        String hireFee = venue.get(3);
+
+        String venueInfo = String.format(
+            "%s (%s) - %s people - $%s base hire fee",
+            venueName, venueCode, capacity, hireFee
+        );
+        System.out.println(venueInfo);
+    }
+      
     }
     else{
     MessageCli.NO_VENUES.printMessage();
@@ -60,8 +101,12 @@ public class VenueHireSystem {
               MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "positive");
           } else {
               MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
-              String data = String.format("%s %s %s %s",venueName,venueCode,capacityInput,hireFeeInput);
-              venuData.add(data);
+              ArrayList<String> venueDataItem = new ArrayList<>();
+                    venueDataItem.add(venueName);
+                    venueDataItem.add(venueCode);
+                    venueDataItem.add(capacityInput);
+                    venueDataItem.add(hireFeeInput);
+                    venueData.add(venueDataItem);
 
           }
       } catch (NumberFormatException e) {
