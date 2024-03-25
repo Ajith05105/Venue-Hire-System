@@ -1,7 +1,6 @@
 package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
-
 import nz.ac.auckland.se281.Types.CateringType;
 import nz.ac.auckland.se281.Types.FloralType;
 
@@ -14,8 +13,7 @@ public class VenueHireSystem {
   }
 
   public String convertToText(int number) {
-    String[] ONES = {
-        "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+    String[] ONES = { "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
     if (number >= 1 && number <= 9) {
       return ONES[number];
 
@@ -99,7 +97,6 @@ public class VenueHireSystem {
           venueDataItem.add(capacityInput);
           venueDataItem.add(hireFeeInput);
           venueData.add(venueDataItem);
-
         }
       } catch (NumberFormatException e) {
         if (!capacityInput.matches("\\d+")) {
