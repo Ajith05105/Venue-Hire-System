@@ -41,11 +41,7 @@ public class VenueHireSystem {
         String capacity = venue.get(2);
         String hireFee = venue.get(3);
 
-        String venueInfo = String.format(
-            "%s (%s) - %s people - $%s base hire fee",
-            venueName, venueCode, capacity, hireFee
-        );
-        System.out.println(venueInfo);
+        MessageCli.VENUE_ENTRY.printMessage(venueName,venueCode,capacity,hireFee);
     }
     }
     else if(bookings>1 && bookings < 10){
@@ -56,11 +52,7 @@ public class VenueHireSystem {
         String capacity = venue.get(2);
         String hireFee = venue.get(3);
 
-        String venueInfo = String.format(
-            "%s (%s) - %s people - $%s base hire fee",
-            venueName, venueCode, capacity, hireFee
-        );
-        System.out.println(venueInfo);
+        MessageCli.VENUE_ENTRY.printMessage(venueName,venueCode,capacity,hireFee);
     }
     }
     else if (bookings >= 10){
@@ -71,11 +63,7 @@ public class VenueHireSystem {
         String capacity = venue.get(2);
         String hireFee = venue.get(3);
 
-        String venueInfo = String.format(
-            "%s (%s) - %s people - $%s base hire fee",
-            venueName, venueCode, capacity, hireFee
-        );
-        System.out.println(venueInfo);
+        MessageCli.VENUE_ENTRY.printMessage(venueName,venueCode,capacity,hireFee);
     }
       
     }
@@ -87,6 +75,13 @@ public class VenueHireSystem {
  
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
+        for (ArrayList<String> venue : venueData) {
+          if (venueCode.equals(venue.get(1))) {
+              MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venueName);
+              return; // Exit method if duplicate venue code found
+          }
+      }
+        
       
   if (venueName.isEmpty()) {
       MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
@@ -97,9 +92,11 @@ public class VenueHireSystem {
           
           if (capacity < 0) {
               MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
+          
           } else if (hireFee < 0) {
               MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "positive");
-          } else {
+          } 
+          else {
               MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
               ArrayList<String> venueDataItem = new ArrayList<>();
                     venueDataItem.add(venueName);
@@ -110,7 +107,11 @@ public class VenueHireSystem {
 
           }
       } catch (NumberFormatException e) {
+        if (!capacityInput.matches("\\d+")) {
+          MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "");
+      } else {
           MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
+      }
       }
   }
 }
