@@ -84,8 +84,10 @@ public class VenueHireSystem {
         
       
   if (venueName.isEmpty()) {
-      MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
-  } else {
+      MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();}
+  if (venueCode.isEmpty()) {
+      MessageCli.VENUE_NOT_CREATED_EMPTY_CODE.printMessage();}
+   else {
       try {
           int capacity = Integer.parseInt(capacityInput);
           int hireFee = Integer.parseInt(hireFeeInput);
@@ -94,7 +96,7 @@ public class VenueHireSystem {
               MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
           
           } else if (hireFee < 0) {
-              MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "positive");
+              MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
           } 
           else {
               MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
@@ -150,3 +152,4 @@ public class VenueHireSystem {
     // TODO implement this method
   }
 }
+
