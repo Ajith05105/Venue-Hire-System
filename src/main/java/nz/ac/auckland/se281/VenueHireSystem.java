@@ -77,7 +77,7 @@ public class VenueHireSystem {
     if (venueName.isEmpty()) {
       MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
     }
-    if (venueCode.isEmpty()) {
+    else if (venueCode.isEmpty()) {
       MessageCli.VENUE_NOT_CREATED_EMPTY_CODE.printMessage();
     } else {
       try {
