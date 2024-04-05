@@ -117,7 +117,7 @@ public class VenueHireSystem {
 
   public void printSystemDate() {
 
-    if (this.dateInput.isEmpty()) {
+    if (this.dateInput == null) {
       MessageCli.CURRENT_DATE.printMessage("not set");
     } else {
       MessageCli.CURRENT_DATE.printMessage(this.dateInput);
@@ -125,10 +125,33 @@ public class VenueHireSystem {
   }
 
   public void makeBooking(String[] options) {
-    if (this.dateInput.isEmpty()) {
+    String gmail = options[2];
+    String date = options[1];
+    String bookingReference = BookingReferenceGenerator.generateBookingReference();
+    String attendees = options[3];
+    String venuName = null;
+    for (ArrayList<String> venue : venueData) {
+      if (options[0].equals(venue.get(1))) {
+        venuName = venue.get(0);
+        break;
+      }
+    }
+
+    if (venueData.isEmpty()) {
+      MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
+      return;
+    }
+    if (this.dateInput == null) {
       MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
       return;
     }
+    if (venuName == null) {
+      MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options[1]);
+      return;
+    } else {
+      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(bookingReference, venuName, date, attendees);
+    }
+
   }
 
   public void printBookings(String venueCode) {
