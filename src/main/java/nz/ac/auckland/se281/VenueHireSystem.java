@@ -69,16 +69,16 @@ public class VenueHireSystem {
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
     for (ArrayList<String> venue : venueData) {
       if (venueCode.equals(venue.get(1))) {
-        MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venueName);
+        MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venue.get(0));
         return; // Exit method if duplicate venue code found
       }
     }
 
     if (venueName.isEmpty()) {
       MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
-    }
-    else if (venueCode.isEmpty()) {
-      MessageCli.VENUE_NOT_CREATED_EMPTY_CODE.printMessage();
+    } else if (venueCode.isEmpty()) {
+      System.out.println("Venue not created: venue code must not be empty.");
+      ;
     } else {
       try {
         int capacity = Integer.parseInt(capacityInput);
