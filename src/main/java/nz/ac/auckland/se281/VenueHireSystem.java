@@ -7,6 +7,7 @@ import nz.ac.auckland.se281.Types.FloralType;
 public class VenueHireSystem {
   private ArrayList<ArrayList<String>> venueData;
   int bookings;
+  private String dateInput;
 
   public VenueHireSystem() {
     venueData = new ArrayList<>();
@@ -109,15 +110,25 @@ public class VenueHireSystem {
   }
 
   public void setSystemDate(String dateInput) {
-    // TODO implement this method
+    this.dateInput = dateInput;
+    MessageCli.DATE_SET.printMessage(dateInput);
+
   }
 
   public void printSystemDate() {
-    // TODO implement this method
+
+    if (this.dateInput.isEmpty()) {
+      MessageCli.CURRENT_DATE.printMessage("not set");
+    } else {
+      MessageCli.CURRENT_DATE.printMessage(this.dateInput);
+    }
   }
 
   public void makeBooking(String[] options) {
-    // TODO implement this method
+    if (this.dateInput.isEmpty()) {
+      MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+      return;
+    }
   }
 
   public void printBookings(String venueCode) {

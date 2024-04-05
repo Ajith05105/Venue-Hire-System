@@ -14,7 +14,6 @@ public enum MessageCli {
   VENUE_SUCCESSFULLY_CREATED("Successfully created venue '%s' (%s)."),
   VENUE_NOT_CREATED_CODE_EXISTS("Venue not created: code '%s' is already used for '%s'."),
   VENUE_NOT_CREATED_EMPTY_NAME("Venue not created: venue name must not be empty."),
-  VENUE_NOT_CREATED_EMPTY_CODE("Venue not created: venue code must not be empty."),
   VENUE_NOT_CREATED_INVALID_NUMBER("Venue not created: %s must be a%s number."),
   VENUE_ENTRY("  * %s (%s) - %s people - $%s base hire fee. Next available on %s"),
 
