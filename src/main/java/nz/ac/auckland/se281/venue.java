@@ -1,12 +1,11 @@
 package nz.ac.auckland.se281;
+
 import java.util.ArrayList;
 import nz.ac.auckland.se281.Types.CateringType;
 import nz.ac.auckland.se281.Types.FloralType;
 
-
 public class venue {
-  
-  
+
   private String venuName;
   private String venueCode;
   private String capacity;
@@ -17,7 +16,7 @@ public class venue {
     this.venueCode = venueCode;
     this.capacity = capacity;
     this.hireFee = hireFee;
-   
+
   }
 
   public String getVenuName() {
@@ -36,6 +35,4 @@ public class venue {
     return this.hireFee;
   }
 
-
-  
 }

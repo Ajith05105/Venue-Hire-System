@@ -6,8 +6,9 @@ import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
   private ArrayList<venue> allTheVenues = new ArrayList<venue>();
+  private ArrayList<bookings> allTheBookings = new ArrayList<bookings>();
+  private String systemDate;
   int bookings;
-  private String dateInput;
 
   public VenueHireSystem() {
   }
@@ -86,14 +87,57 @@ public class VenueHireSystem {
   }
 
   public void setSystemDate(String dateInput) {
+    this.systemDate = dateInput;
+    MessageCli.DATE_SET.printMessage(dateInput);
 
   }
 
   public void printSystemDate() {
+    if (this.systemDate == null) {
+      MessageCli.CURRENT_DATE.printMessage("not set");
+    } else {
+      MessageCli.CURRENT_DATE.printMessage(this.systemDate);
+    }
 
   }
 
   public void makeBooking(String[] options) {
+    String bookingReference = BookingReferenceGenerator.generateBookingReference();
+    bookings booking = new bookings(bookingReference, options[0], options[1], options[2], options[3]);
+
+    if (this.systemDate == null) {
+      MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+      return;
+    } else if (allTheVenues.size() == 0) {
+      MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
+      return;
+
+    }
+    for (venue venue : allTheVenues) {
+      if (venue.getVenueCode().equals(options[0])) {
+        if (allTheBookings.size() == 0) {
+          MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(bookingReference, venue.getVenuName(), options[1],
+              options[3]);
+          allTheBookings.add(booking);
+          return;
+        } else {
+          for (bookings booking1 : allTheBookings) {
+            if (booking1.getVenueCode().equals(options[0]) && booking1.getvenueDate().equals(options[1])) {
+              MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venue.getVenuName(), options[1]);
+              return;
+            } else {
+              MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(bookingReference, venue.getVenuName(), options[1],
+                  options[3]);
+              allTheBookings.add(booking);
+              return;
+            }
+          }
+        }
+      } else {
+        MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options[0]);
+        return;
+      }
+    }
 
   }
 
