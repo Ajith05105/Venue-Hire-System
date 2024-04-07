@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import nz.ac.auckland.se281.Types.CateringType;
 import nz.ac.auckland.se281.Types.FloralType;
 
-public class venue {
+public class venue extends VenueHireSystem {
 
   private String venuName;
   private String venueCode;

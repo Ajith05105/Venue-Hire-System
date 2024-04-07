@@ -1,20 +1,26 @@
 package nz.ac.auckland.se281;
 
-public class bookings {
+public class bookings extends VenueHireSystem {
 
   private String venueCode;
   private String venueDate;
   private String customerEmail;
   private String numberOfGuests;
   private String bookingReference;
+  private String venueName;
 
   public bookings(String bookingReference, String venueCode, String venueDate, String customerEmail,
-      String numberOfGuests) {
+      String numberOfGuests, String venueName) {
     this.venueCode = venueCode;
     this.venueDate = venueDate;
     this.numberOfGuests = numberOfGuests;
     this.customerEmail = customerEmail;
     this.bookingReference = bookingReference;
+    this.venueName = venueName;
+  }
+
+  public String getVenueName() {
+    return this.venueName;
   }
 
   public String getBookingReference() {
