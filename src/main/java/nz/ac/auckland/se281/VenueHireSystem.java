@@ -24,7 +24,8 @@ public class VenueHireSystem {
   }
 
   public void printVenues() {
-    int bookings = allTheVenues.size(); // Update bookings count based on the size of allTheVenues
+
+    int bookings = allTheVenues.size(); 
     if (bookings == 0) {
       MessageCli.NO_VENUES.printMessage();
       return;
@@ -40,14 +41,14 @@ public class VenueHireSystem {
 
     for (venue venue : allTheVenues) {
       MessageCli.VENUE_ENTRY.printMessage(venue.getVenuName(), venue.getVenueCode(), venue.getCapacity(),
-          venue.getHireFee());
+          venue.getHireFee(), String.valueOf(venue.getNextAvailableDate(this.systemDate)));
     }
   }
 
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
 
-    venue venueBeingCreated = new venue(venueName, venueCode, capacityInput, hireFeeInput);
+    venue venueBeingCreated = new venue(venueName, venueCode, capacityInput, hireFeeInput, allTheBookings);
 
     for (venue venue : allTheVenues) {
       if (venue.getVenueCode().equals(venueCode)) {
@@ -125,9 +126,9 @@ public class VenueHireSystem {
         break;
       }
     }
-    if (Integer.valueOf(options[3]) < venueCapacityInt) {
+    if (Integer.valueOf(options[3]) < venueCapacityInt / 4) {
       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], String.valueOf(adjustedCapacity), venueCapacity);
-      options[3] = String.valueOf(Integer.valueOf(venueCapacity) / 4);
+
     }
 
     for (bookings existingBooking : allTheBookings) {
