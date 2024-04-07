@@ -22,52 +22,56 @@ public class venue extends VenueHireSystem {
 
   }
 
-  public String getNextAvailableDate(String systemDate) {
-    if (currentVenueBookings.isEmpty()) {
+  
+   
+  public String getNextAvailableDate(String systemDate){
+    String[] dateParts = systemDate.split("/");
+
+    int day = Integer.parseInt(dateParts[0]) ;   
+    int month = Integer.parseInt(dateParts[1]); 
+    int year = Integer.parseInt(dateParts[2]);  
+
+    if(currentVenueBookings.size() == 0){
       return systemDate;
     }
-
-    // Split the system date into day, month, and year.
-    String[] dateParts = systemDate.split("/");
-    int day = Integer.parseInt(dateParts[0]);
-    int month = Integer.parseInt(dateParts[1]);
-    int year = Integer.parseInt(dateParts[2]);
-
-    // Check each day starting from the system date until an available date is
-    // found.
-    while (true) {
-      boolean dateAvailable = true;
-
-      // Check if there is a booking for the current date.
-      for (bookings booking : currentVenueBookings) {
+    else{
+      while(true){
+        boolean dateAvailable = true;
+     //go through the bookings and find the next available date
+      for(bookings booking : currentVenueBookings){
         String[] bookingDateParts = booking.getvenueDate().split("/");
         int bookingDay = Integer.parseInt(bookingDateParts[0]);
         int bookingMonth = Integer.parseInt(bookingDateParts[1]);
         int bookingYear = Integer.parseInt(bookingDateParts[2]);
 
-        // If there's a booking for the current date, mark it as unavailable.
-        if (day == bookingDay && month == bookingMonth && year == bookingYear) {
-          dateAvailable = false;
-          break; // No need to check further, as the date is already booked.
-        }
+      if(bookingDay ==(day) && bookingMonth == (month) && bookingYear == (year)){
+         
+            dateAvailable = false;
+            break; }
       }
 
-      // If the date is available, return it.
       if (dateAvailable) {
         return String.format("%02d/%02d/%d", day, month, year);
       }
-
-      // Move to the next day.
       day++;
-      if (day > 31) {
-        day = 1;
-        month++;
-        if (month > 12) {
-          month = 1;
-          year++;
+        if (day > 31) {
+            day = 1;
+            month++;
+            if (month > 12) {
+                month = 1;
+                year++;
+            }
+          }
+
+          if (day == Integer.parseInt(dateParts[0]) && month == Integer.parseInt(dateParts[1]) && year == Integer.parseInt(dateParts[2])) {
+            return "No available dates"; // Add appropriate handling here
         }
-      }
-    }
+    
+  }
+
+  }
+    
+
   }
 
   public String getVenuName() {

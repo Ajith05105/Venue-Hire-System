@@ -41,7 +41,7 @@ public class VenueHireSystem {
 
     for (venue venue : allTheVenues) {
       MessageCli.VENUE_ENTRY.printMessage(venue.getVenuName(), venue.getVenueCode(), venue.getCapacity(),
-          venue.getHireFee(), String.valueOf(venue.getNextAvailableDate(this.systemDate)));
+          venue.getHireFee(), String.valueOf(venue.getNextAvailableDate(systemDate)));
     }
   }
 
