@@ -6,6 +6,7 @@ import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
   protected ArrayList<Venue> allTheVenues = new ArrayList<Venue>();
+  protected ArrayList<Booking> allBookings = new ArrayList<Booking>();
   private String systemDate;
   int bookings;
 
@@ -38,12 +39,22 @@ public class VenueHireSystem {
     }
 
     for (Venue venue : allTheVenues) {
-      MessageCli.VENUE_ENTRY.printMessage(
-          venue.getVenuName(),
-          venue.getVenueCode(),
-          venue.getCapacity(),
-          venue.getHireFee(),
-          venue.getNextAvailableDate(systemDate));
+      if (systemDate == null) {
+        MessageCli.CURRENT_DATE.printMessage("is not set");
+        MessageCli.VENUE_ENTRY.printMessage(
+            venue.getVenuName(),
+            venue.getVenueCode(),
+            venue.getCapacity(),
+            venue.getHireFee());
+      } else {
+        MessageCli.VENUE_ENTRY.printMessage(
+            venue.getVenuName(),
+            venue.getVenueCode(),
+            venue.getCapacity(),
+            venue.getHireFee(),
+            venue.getNextAvailableDate(systemDate));
+      }
+
     }
   }
 
@@ -158,6 +169,7 @@ public class VenueHireSystem {
     Booking booking = new Booking(bookingReference, givenVenueCode, givenDate, givenEmail, givenGuests, venueName);
 
     requestedVenue.addBooking(booking);
+    allBookings.add(booking);
 
     MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
         bookingReference, venueName, givenDate, givenGuests);
@@ -198,8 +210,36 @@ public class VenueHireSystem {
     }
   }
 
+  private Venue getVenueByCode(String venueCode) {
+    for (Venue venue : allTheVenues) {
+      if (venue.getVenueCode().equals(venueCode)) {
+        return venue;
+      }
+    }
+    return null;
+  }
+
+  private Booking getBookingByReference(String bookingReference) {
+    for (Booking booking : allBookings) {
+      if (booking.getBookingReference().equals(bookingReference)) {
+        return booking;
+      }
+    }
+    return null;
+  }
+
   public void addCateringService(String bookingReference, CateringType cateringType) {
-    // TODO implement this method
+    Booking booking = getBookingByReference(bookingReference);
+
+    if (booking != null) {
+      CateringService cateringService = new CateringService(booking, cateringType);
+      cateringService.addService();
+
+      MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(cateringType.toString(), bookingReference);
+    } else {
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Catering", bookingReference);
+    }
+
   }
 
   public void addServiceMusic(String bookingReference) {
@@ -211,6 +251,6 @@ public class VenueHireSystem {
   }
 
   public void viewInvoice(String bookingReference) {
-    // TODO implement this method
+
   }
 }
