@@ -152,7 +152,7 @@ public class VenueHireSystem {
         MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venueName, givenDate);
         return;
       }
-      
+
     }
 
     Booking booking = new Booking(bookingReference, givenVenueCode, givenDate, givenEmail, givenGuests, venueName);
@@ -168,7 +168,34 @@ public class VenueHireSystem {
   }
 
   public void printBookings(String venueCode) {
-    // TODO implement this method
+    Venue requestedVenue = null;
+    ArrayList<Booking> requestedVenueBookings = new ArrayList<Booking>();
+
+    for (Venue venue : allTheVenues) {
+      if (venue.getVenueCode().equals(venueCode)) {
+        requestedVenue = venue;
+        break;
+      }
+    }
+
+    if (requestedVenue == null) {
+      MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+      return;
+    } else {
+      requestedVenueBookings = requestedVenue.getCurrentVenueBookings();
+    }
+
+    if (requestedVenueBookings.isEmpty()) {
+      MessageCli.PRINT_BOOKINGS_HEADER.printMessage(requestedVenue.getVenuName());
+      MessageCli.PRINT_BOOKINGS_NONE.printMessage(requestedVenue.getVenuName());
+      return;
+    }
+    MessageCli.PRINT_BOOKINGS_HEADER.printMessage(requestedVenue.getVenuName());
+    for (Booking booking : requestedVenueBookings) {
+      MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(
+          booking.getBookingReference(),
+          booking.getBookingDate());
+    }
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
