@@ -54,11 +54,4 @@ public class Booking extends VenueHireSystem {
     return services;
   }
 
-  public Integer totalServicesCost() {
-    Integer totalCost = 0;
-    for (Service service : services) {
-      totalCost += service.getServiceCost();
-    }
-    return totalCost;
-  }
 }
