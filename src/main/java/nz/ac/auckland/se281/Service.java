@@ -11,4 +11,6 @@ public abstract class Service {
 
   protected abstract Integer getServiceCost();
 
+  protected abstract String getServiceName();
+
 }
