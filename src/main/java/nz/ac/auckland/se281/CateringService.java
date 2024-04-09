@@ -19,7 +19,6 @@ public class CateringService extends Service {
   protected Integer getServiceCost() {
     return cateringType.getCostPerPerson() * Integer.parseInt(booking.getNumberOfGuests());
   }
-
   @Override
   public String getServiceName() {
     return cateringType.getName();
