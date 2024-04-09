@@ -20,6 +20,8 @@ public class Venue extends VenueHireSystem {
     this.currentVenueBookings = currentVenueBookings;
   }
 
+  // This method is used to get the next available date for a booking
+
   public String getNextAvailableDate(String systemDate) {
     String[] dateParts = systemDate.split("/");
 
@@ -61,7 +63,7 @@ public class Venue extends VenueHireSystem {
 
         if (day == Integer.parseInt(dateParts[0]) && month == Integer.parseInt(dateParts[1])
             && year == Integer.parseInt(dateParts[2])) {
-          return "No available dates"; 
+          return "No available dates";
         }
 
       }
@@ -69,6 +71,7 @@ public class Venue extends VenueHireSystem {
     }
 
   }
+  // Getters and Setters
 
   public String getVenuName() {
     return this.venuName;
