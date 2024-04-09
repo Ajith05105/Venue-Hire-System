@@ -250,14 +250,14 @@ public class VenueHireSystem {
       MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Music", bookingReference);
     } else {
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Music", bookingReference);
-    } 
-    
+    }
+
   }
 
   public void addServiceFloral(String bookingReference, FloralType floralType) {
     Booking booking = getBookingByReference(bookingReference);
     String floralMessage = String.format("Floral (%s)", floralType.getName());
-    if(booking != null) {
+    if (booking != null) {
       FloralService floralService = new FloralService(booking, floralType);
       floralService.addService();
       MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(floralMessage, bookingReference);

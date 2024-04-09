@@ -17,7 +17,7 @@ public class FloralService extends Service {
 
   @Override
   protected Integer getServiceCost() {
-    return floralType.getCost() ;
+    return floralType.getCost();
   }
 
   @Override
