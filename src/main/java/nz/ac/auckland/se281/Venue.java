@@ -61,7 +61,7 @@ public class Venue extends VenueHireSystem {
 
         if (day == Integer.parseInt(dateParts[0]) && month == Integer.parseInt(dateParts[1])
             && year == Integer.parseInt(dateParts[2])) {
-          return "No available dates"; // Add appropriate handling here
+          return "No available dates"; 
         }
 
       }
