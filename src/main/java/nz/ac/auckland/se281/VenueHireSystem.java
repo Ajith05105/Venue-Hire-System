@@ -121,6 +121,35 @@ public class VenueHireSystem {
     }
   }
 
+  // method to check that the bo0king date is not in the past
+  public boolean checkValidDate(String systemDate, String givenDate){
+    boolean isDateValid = false;
+    String[] systemDateParts = systemDate.split("/");
+
+    int day = Integer.parseInt(systemDateParts[0]);
+    int month = Integer.parseInt(systemDateParts[1]);
+    int year = Integer.parseInt(systemDateParts[2]);
+
+    String[] givenDateParts = givenDate.split("/");
+    int bookingDay = Integer.parseInt(givenDateParts[0]);
+    int bookingMonth = Integer.parseInt(givenDateParts[1]);
+    int bookingYear = Integer.parseInt(givenDateParts[2]);
+
+    if (bookingYear > year) {
+      isDateValid = true;
+    } else if (bookingYear == year) {
+      if (bookingMonth > month) {
+        isDateValid = true;
+      } else if (bookingMonth == month) {
+        if (bookingDay >= day) {
+          isDateValid = true;
+        }
+      }
+    }
+    return isDateValid;
+
+  }
+
   // method to make a booking
 
   public void makeBooking(String[] options) {
@@ -164,6 +193,10 @@ public class VenueHireSystem {
       requestedVenueBookings = requestedVenue.getCurrentVenueBookings();
       venueCapacityInt = Integer.parseInt(venueCapacity);
       adjustedCapacity = venueCapacityInt / 4;
+    }
+    if(!checkValidDate(systemDate, givenDate)){
+      MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(givenDate, systemDate);
+      return;
     }
     // validating the number of guests so that they are more than a quatert of the
     // venue capacity
